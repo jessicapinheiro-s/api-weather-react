@@ -111,9 +111,7 @@ export default function BodyWeather() {
                 <ContainerInfoWeather>
                     <p> Humidade do ar</p>
                     <About>
-                        <p>
-                            <WiRaindrop className="icon" />
-                        </p>
+                        <WiRaindrop className="icon" />
                         <p> {inforWeather?.main.humidity}</p>
                     </About>
 
