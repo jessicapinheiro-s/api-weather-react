@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
+import { Card, ContainerMaxMin, ContainerTempAtual, ContainerLocalInfo, ContainerLocalName, ContainerInfoWeather } from './body-weather-style'
+import { WiThermometer } from "react-icons/wi";
+import { WiRaindrop } from "react-icons/wi";
 
 interface propsCity {
     coord: Coord;
@@ -52,7 +55,7 @@ interface Coord {
 
 export default function BodyWeather() {
     const [inforWeather, setInfoWeather] = useState<propsCity | null>(null);
-    const linkRequestuInfo = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={SuaChaveAPI}';
+    const linkRequestuInfo = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={SuaChaveAPI}&units=metric';
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
     const dataAtual: Date = new Date();
@@ -77,14 +80,48 @@ export default function BodyWeather() {
 
     console.log(inforWeather);
     return (
-        <div>
-            <h1>{inforWeather?.name}</h1>
-            <p>{dataAtual.toLocaleDateString()} {dataAtual.getHours()}:{ dataAtual.getMinutes()}</p>
-            <p>Temperatura maxima: {inforWeather?.main.temp_max}</p>
-            <p>Temperatura minima: {inforWeather?.main.temp_min}</p>
-            <p>Temperatura Atual: {inforWeather?.main.temp}</p>
-            <p>Humidade: {inforWeather?.main.humidity}</p>
-            <p>Sensação Térmica: {inforWeather?.main.feels_like}</p>
-        </div>
+        <Card>
+            <ContainerLocalName>
+                <h1>{inforWeather?.name}</h1>
+                <ContainerTempAtual>
+                    <p>{inforWeather?.main?.temp != null ? Math.ceil(inforWeather?.main?.temp).toString().concat('°C') : null}</p>
+                </ContainerTempAtual>
+
+            </ContainerLocalName>
+            <ContainerLocalInfo>
+                <p>{(inforWeather?.weather)?.map(local => local.description)}</p>
+                <p>{dataAtual.toLocaleDateString()} {dataAtual.getHours()}:{dataAtual.getMinutes()}</p>
+            </ContainerLocalInfo>
+
+
+            <ContainerMaxMin>
+                <ContainerInfoWeather>
+                    <p>Maxima</p>
+                    <p> {inforWeather?.main?.temp_max != null ? Math.ceil(inforWeather?.main?.temp_max).toString().concat('°C') : null}</p>
+                </ContainerInfoWeather>
+                <ContainerInfoWeather>
+                    <p>Minima</p>
+                    <p>{inforWeather?.main?.temp_min != null ? Math.ceil(inforWeather?.main?.temp_min).toString().concat('°C') : null}</p>
+                </ContainerInfoWeather>
+            </ContainerMaxMin>
+
+            <ContainerLocalInfo>
+                <ContainerInfoWeather>
+                    <p> Humidade do ar</p>
+                    <p><WiRaindrop className="icon" /> {inforWeather?.main.humidity}</p>
+                </ContainerInfoWeather>
+                <ContainerInfoWeather>
+                    <p> Sensação Térmica</p>
+                    <p> <WiThermometer className="icon" /> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
+                </ContainerInfoWeather>
+                <ContainerInfoWeather>
+                    <p> Vento</p>
+                    <p> <WiThermometer className="icon" /> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('Km/h') : null}</p>
+                </ContainerInfoWeather>
+            </ContainerLocalInfo>
+
+
+
+        </Card>
     );
 }
