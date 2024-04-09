@@ -116,7 +116,7 @@ export default function BodyWeather() {
                 </ContainerInfoWeather>
                 <ContainerInfoWeather>
                     <p> Vento</p>
-                    <p> <WiThermometer className="icon" /> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('Km/h') : null}</p>
+                    <p> <WiThermometer className="icon" /> {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3,6 ).toString().concat('km/h') : null}</p>
                 </ContainerInfoWeather>
             </ContainerLocalInfo>
 

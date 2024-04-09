@@ -11,6 +11,9 @@ export const Card = styled.div`
     border-radius: 10px;
     backdrop-filter: blur(2px);
     color: #fff;
+    @media (max-width: 600px){
+        width: 400px;
+    }
 `;
 
 export const ContainerMaxMin = styled.div`
