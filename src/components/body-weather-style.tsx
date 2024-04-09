@@ -18,8 +18,8 @@ export const Card = styled.div`
 
 export const ContainerMaxMin = styled.div`
     display:flex;
-    aling-items: center;
-    justfy-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     gap: 20px;
     border: 1px solid #fff;
       border-radius: 10px;
@@ -31,8 +31,8 @@ export const ContainerTempAtual = styled.div`
 `;
 export const ContainerLocalInfo = styled.div`
     display:flex;
-    aling-items: center;
-    justfy-content: space-between;    
+    align-items: center;
+    justify-content: space-between;    
     gap: 20px;
    
 `;
@@ -46,10 +46,17 @@ export const ContainerLocalName = styled.div`
 export const ContainerInfoWeather = styled.div`
     .icon{
         font-size: 2rem;
+
     }
     p:nth-child(2) {
-        font-size: 1.6rem
+        font-size: 1.6rem;
     }
     
      
+`;
+export const About = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: left;
+
 `;

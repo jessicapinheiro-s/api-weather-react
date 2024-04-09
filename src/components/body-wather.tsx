@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
-import { Card, ContainerMaxMin, ContainerTempAtual, ContainerLocalInfo, ContainerLocalName, ContainerInfoWeather } from './body-weather-style'
+import { Card, ContainerMaxMin, ContainerTempAtual, ContainerLocalInfo, ContainerLocalName, ContainerInfoWeather, About } from './body-weather-style'
 import { WiThermometer } from "react-icons/wi";
 import { WiRaindrop } from "react-icons/wi";
+import { WiStrongWind } from "react-icons/wi";
+
 
 interface propsCity {
     coord: Coord;
@@ -108,15 +110,31 @@ export default function BodyWeather() {
             <ContainerLocalInfo>
                 <ContainerInfoWeather>
                     <p> Humidade do ar</p>
-                    <p><WiRaindrop className="icon" /> {inforWeather?.main.humidity}</p>
+                    <About>
+                        <p>
+                            <WiRaindrop className="icon" />
+                        </p>
+                        <p> {inforWeather?.main.humidity}</p>
+                    </About>
+
                 </ContainerInfoWeather>
                 <ContainerInfoWeather>
                     <p> Sensação Térmica</p>
-                    <p> <WiThermometer className="icon" /> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
+                    <About>
+                        <p>
+                            <WiThermometer className="icon" />
+                        </p>
+                        <p> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
+                    </About>
                 </ContainerInfoWeather>
                 <ContainerInfoWeather>
                     <p> Vento</p>
-                    <p> <WiThermometer className="icon" /> {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3,6 ).toString().concat('km/h') : null}</p>
+                    <About>
+                        <p>
+                            <WiStrongWind className="icon" />
+                        </p>
+                        <p>  {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3, 6).toString().concat('km/h') : null}</p>
+                    </About>
                 </ContainerInfoWeather>
             </ContainerLocalInfo>
 
