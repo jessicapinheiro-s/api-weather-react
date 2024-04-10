@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
 import { Card, ContainerMaxMin, ContainerTempAtual, ContainerLocalInfo, ContainerLocalName, ContainerInfoWeather, About } from './body-weather-style'
-import { WiThermometer, WiDaySunny, WiRaindrop, WiStrongWind } from "react-icons/wi";
+import { WiThermometer, WiRaindrop, WiStrongWind } from "react-icons/wi";
 
 
 
@@ -130,7 +130,7 @@ export default function BodyWeather() {
                             <p>
                                 <WiThermometer className="icon" />
                             </p>
-                            <p> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
+                            <p> {Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C')}</p>
                         </About>
                     </ContainerInfoWeather>
                     <ContainerInfoWeather>
@@ -139,7 +139,7 @@ export default function BodyWeather() {
                             <p>
                                 <WiStrongWind className="icon" />
                             </p>
-                            <p>  {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3, 6).toString().concat('km/h') : null}</p>
+                            <p>  {(inforWeather?.wind?.speed * 3, 6).toString().concat('km/h')}</p>
                         </About>
                     </ContainerInfoWeather>
                 </ContainerLocalInfo>
