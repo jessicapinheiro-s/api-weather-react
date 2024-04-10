@@ -29,7 +29,7 @@ export const ContainerCardHours = styled.div`
     width: 560px;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
     @media (max-width: 600px){
@@ -38,7 +38,7 @@ export const ContainerCardHours = styled.div`
 `;
 export const CardHoursContainer = styled.div`
     gap: 20px;
-    padding: 10px;
+    padding: 15px 10px;
     border: 1px #f3f3f3 solid;
     border-radius: 10px;
     backdrop-filter: blur(2px);
@@ -47,6 +47,10 @@ export const CardHoursContainer = styled.div`
     flex-direction: column;
     word-wrap: break-word;
     flex-wrap: wrap;
+    p:nth-child(2) {
+        font-size: 1.4rem;
+    }
+    text-align: center;
    
 `;
 export const ContainerTempAtual = styled.div`
