@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
-import { Card, ContainerCardHours, ContainerLocalInfo } from './body-weather-style'
+import { Card, ContainerCardHours, CardHoursContainer, ContainerLocalInfo } from './body-weather-style'
 import { WiThermometer, WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { NewLineKind } from "typescript";
 
@@ -69,6 +69,11 @@ interface Main {
     humidity: number;
     temp_kf: number;
 }
+function formatarData(data: Date) {
+    const horas: string = data.getHours() <= 9 ? `   0${data.getHours()}` : ` ${data.getHours()}`;
+    const minutos: string = data.getMinutes() <= 9 ? `0${data.getMinutes()}` : data.getMinutes().toString();
+    return horas.concat(':' + minutos);
+}
 
 export default function CardHours() {
     const [inforWeatherHours, setinforWeatherHours] = useState<propsCity | null>(null);
@@ -102,13 +107,10 @@ export default function CardHours() {
             <ContainerCardHours>
                 {
                     (inforWeatherHours.list).map((f) => (
-                        <Card key={f.dt}>
-                            <ContainerLocalInfo>
-                                <p>{f?.dt_txt}</p>
-                                <p>{f?.main.temp}</p>
-                            </ContainerLocalInfo>
-
-                        </Card>
+                        <CardHoursContainer key={f.dt}>
+                            <p>{formatarData(new Date(f?.dt_txt))}</p>
+                            <p>{Math.ceil(f?.main.temp).toString().concat('°C')}</p>
+                        </CardHoursContainer>
                     )
                     )
                 }

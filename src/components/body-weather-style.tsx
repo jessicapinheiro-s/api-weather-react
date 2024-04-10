@@ -26,10 +26,28 @@ export const ContainerMaxMin = styled.div`
       padding: 10px;
 `;
 export const ContainerCardHours = styled.div`
+    width: 560px;
     display:flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
+    @media (max-width: 600px){
+        width: 410px;
+    }
+`;
+export const CardHoursContainer = styled.div`
+    gap: 20px;
+    padding: 10px;
+    border: 1px #f3f3f3 solid;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    color: #fff;
+    display:flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+   
 `;
 export const ContainerTempAtual = styled.div`
 
