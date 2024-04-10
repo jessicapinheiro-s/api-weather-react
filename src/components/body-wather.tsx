@@ -145,6 +145,13 @@ export default function BodyWeather() {
                 </ContainerLocalInfo>
             </Card>
         );
+    }else{
+        return(
+            <Card>
+            <h1>Error</h1>
+            <p>Não foi possivel obter informações da sua localização atual</p>
+        </Card>
+        )
     }
     
 }
