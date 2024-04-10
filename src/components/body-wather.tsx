@@ -62,7 +62,10 @@ function formatarData(data: Date){
 
 export default function BodyWeather() {
     const [inforWeather, setInfoWeather] = useState<propsCity | null>(null);
+    const [inforWeatherHours, setInforWeatherHours] = useState<propsCity | null>(null);
     const linkRequestuInfo = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={SuaChaveAPI}&units=metric';
+    const linkRequestInfoDays = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={SuaChaveAPI}&units=metric&cnt={cnt}';
+    const numeroHours: number = 10;
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
     const dataAtual: Date = new Date();
@@ -83,10 +86,18 @@ export default function BodyWeather() {
             .then(data => setInfoWeather(data))
             .catch(error => console.error('Erro ao buscar informações do clima:', error));
     }, [latitude, longitude]);
+    
+    useEffect(() => {
+        fetch(linkRequestInfoDays.replace('{SuaChaveAPI}', credentials.weather.key).replace('{lat}', latitude.toString()).replace('{lon}', longitude.toString()).replace('{cnt}', numeroHours.toString()))
+            .then(response => response.json())
+            .then(data => setInforWeatherHours(data))
+            .catch(error => console.error('Erro ao buscar informações do clima:', error));
+    }, [latitude, longitude]);
 
     let infoTemp = inforWeather?.main?.temp != null ? Math.ceil(inforWeather?.main?.temp) : null;
 
     console.log(inforWeather);
+    console.log(inforWeatherHours);
 
     if(inforWeather  != null){
         return (

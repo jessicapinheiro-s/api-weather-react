@@ -25,6 +25,12 @@ export const ContainerMaxMin = styled.div`
       border-radius: 10px;
       padding: 10px;
 `;
+export const ContainerCardHours = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+`;
 export const ContainerTempAtual = styled.div`
 
     font-size: 4rem
