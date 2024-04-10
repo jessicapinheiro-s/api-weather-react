@@ -39,7 +39,7 @@ export const ContainerLocalName = styled.div`
     font-size: 1.6rem;
     display:flex;
     align-items:center;
-    justy-content: space-between;
+    justify-content: space-between;
     @media (max-width: 600px){
         align-items:self-start;
     }

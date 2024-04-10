@@ -54,6 +54,12 @@ interface Coord {
     lon: number;
     lat: number;
 }
+function formatarData(data: Date){
+    const horas: string = data.getHours() <= 9 ? ` 0${data.getHours()}` : data.getHours().toString();
+    const minutos: string = data.getMinutes() <= 9 ? ` 0${data.getMinutes()}` : data.getMinutes().toString();
+    return (data.toLocaleDateString()).concat(horas + ':' + minutos);
+}
+
 
 export default function BodyWeather() {
     const [inforWeather, setInfoWeather] = useState<propsCity | null>(null);
@@ -81,6 +87,8 @@ export default function BodyWeather() {
 
 
     console.log(inforWeather);
+
+  
     return (
         <Card>
             <ContainerLocalName>
@@ -92,7 +100,7 @@ export default function BodyWeather() {
             </ContainerLocalName>
             <ContainerLocalInfo>
                 <p>{(inforWeather?.weather)?.map(local => local.description)}</p>
-                <p>{dataAtual.toLocaleDateString()} {dataAtual.getHours()}:{dataAtual.getMinutes()}</p>
+                <p>{formatarData(dataAtual)}</p>
             </ContainerLocalInfo>
 
 
