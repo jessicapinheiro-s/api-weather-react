@@ -38,7 +38,7 @@ export const ContainerLocalInfo = styled.div`
 export const ContainerLocalName = styled.div`
     font-size: 1.6rem;
     display:flex;
-    align-items:center;
+    align-items: flex-start;
     justify-content: space-between;
     @media (max-width: 600px){
         align-items:self-start;

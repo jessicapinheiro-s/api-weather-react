@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
 import { Card, ContainerMaxMin, ContainerTempAtual, ContainerLocalInfo, ContainerLocalName, ContainerInfoWeather, About } from './body-weather-style'
-import { WiThermometer } from "react-icons/wi";
-import { WiRaindrop } from "react-icons/wi";
-import { WiStrongWind } from "react-icons/wi";
+import { WiThermometer, WiDaySunny, WiRaindrop, WiStrongWind } from "react-icons/wi";
+
 
 
 interface propsCity {
@@ -85,67 +84,67 @@ export default function BodyWeather() {
             .catch(error => console.error('Erro ao buscar informações do clima:', error));
     }, [latitude, longitude]);
 
+    let infoTemp = inforWeather?.main?.temp != null ? Math.ceil(inforWeather?.main?.temp) : null;
 
     console.log(inforWeather);
 
-  
-    return (
-        <Card>
-            <ContainerLocalName>
-                <h1>{inforWeather?.name}</h1>
-                <ContainerTempAtual>
-                    <p>{inforWeather?.main?.temp != null ? Math.ceil(inforWeather?.main?.temp).toString().concat('°C') : null}</p>
-                </ContainerTempAtual>
-
-            </ContainerLocalName>
-            <ContainerLocalInfo>
-                <p>{(inforWeather?.weather)?.map(local => local.description)}</p>
-                <p>{formatarData(dataAtual)}</p>
-            </ContainerLocalInfo>
-
-
-            <ContainerMaxMin>
-                <ContainerInfoWeather>
-                    <p>Maxima</p>
-                    <p> {inforWeather?.main?.temp_max != null ? Math.ceil(inforWeather?.main?.temp_max).toString().concat('°C') : null}</p>
-                </ContainerInfoWeather>
-                <ContainerInfoWeather>
-                    <p>Minima</p>
-                    <p>{inforWeather?.main?.temp_min != null ? Math.ceil(inforWeather?.main?.temp_min).toString().concat('°C') : null}</p>
-                </ContainerInfoWeather>
-            </ContainerMaxMin>
-
-            <ContainerLocalInfo>
-                <ContainerInfoWeather>
-                    <p> Humidade do ar</p>
-                    <About>
-                        <WiRaindrop className="icon" />
-                        <p> {inforWeather?.main.humidity}</p>
-                    </About>
-
-                </ContainerInfoWeather>
-                <ContainerInfoWeather>
-                    <p> Sensação Térmica</p>
-                    <About>
-                        <p>
-                            <WiThermometer className="icon" />
-                        </p>
-                        <p> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
-                    </About>
-                </ContainerInfoWeather>
-                <ContainerInfoWeather>
-                    <p> Vento</p>
-                    <About>
-                        <p>
-                            <WiStrongWind className="icon" />
-                        </p>
-                        <p>  {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3, 6).toString().concat('km/h') : null}</p>
-                    </About>
-                </ContainerInfoWeather>
-            </ContainerLocalInfo>
-
-
-
-        </Card>
-    );
+    if(inforWeather  != null){
+        return (
+            <Card>
+                <ContainerLocalName>
+                    <h1>{inforWeather?.name}</h1>
+                    <ContainerTempAtual>
+                        <p>{infoTemp?.toString().concat('°C')}</p>
+                    </ContainerTempAtual>
+    
+                </ContainerLocalName>
+                <ContainerLocalInfo>
+                    <p>{(inforWeather?.weather)?.map(local => local.main)}</p>
+                    <p>{formatarData(dataAtual)}</p>
+                </ContainerLocalInfo>
+    
+    
+                <ContainerMaxMin>
+                    <ContainerInfoWeather>
+                        <p>Maxima</p>
+                        <p> {Math.ceil(inforWeather?.main?.temp_max).toString().concat('°C')}</p>
+                    </ContainerInfoWeather>
+                    <ContainerInfoWeather>
+                        <p>Minima</p>
+                        <p>{Math.ceil(inforWeather?.main?.temp_min).toString().concat('°C')}</p>
+                    </ContainerInfoWeather>
+                </ContainerMaxMin>
+    
+                <ContainerLocalInfo>
+                    <ContainerInfoWeather>
+                        <p> Humidade do ar</p>
+                        <About>
+                            <WiRaindrop className="icon" />
+                            <p> {inforWeather?.main.humidity}</p>
+                        </About>
+    
+                    </ContainerInfoWeather>
+                    <ContainerInfoWeather>
+                        <p> Sensação Térmica</p>
+                        <About>
+                            <p>
+                                <WiThermometer className="icon" />
+                            </p>
+                            <p> {inforWeather?.main.feels_like != null ? Math.ceil(inforWeather?.main?.feels_like).toString().concat('°C') : null}</p>
+                        </About>
+                    </ContainerInfoWeather>
+                    <ContainerInfoWeather>
+                        <p> Vento</p>
+                        <About>
+                            <p>
+                                <WiStrongWind className="icon" />
+                            </p>
+                            <p>  {inforWeather?.wind?.speed != null ? (inforWeather?.wind?.speed * 3, 6).toString().concat('km/h') : null}</p>
+                        </About>
+                    </ContainerInfoWeather>
+                </ContainerLocalInfo>
+            </Card>
+        );
+    }
+    
 }
