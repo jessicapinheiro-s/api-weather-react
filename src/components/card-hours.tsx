@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { credentials } from "../weather-api-credentials";
 import { Card, ContainerCardHours, CardHoursContainer, ContainerLocalInfo } from './body-weather-style'
-import { WiThermometer, WiRaindrop, WiStrongWind } from "react-icons/wi";
-import { NewLineKind } from "typescript";
+
 
 interface propsCity {
     cod: string;

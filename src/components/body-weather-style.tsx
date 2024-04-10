@@ -9,7 +9,7 @@ export const Card = styled.div`
     }
     border: 1px #f3f3f3 solid;
     border-radius: 10px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     color: #fff;
     @media (max-width: 600px){
         width: 350px;
@@ -66,10 +66,10 @@ export const ContainerLocalInfo = styled.div`
 export const ContainerLocalName = styled.div`
     font-size: 1.6rem;
     display:flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     @media (max-width: 600px){
-        align-items:self-start;
+        align-items:flex-start;
     }
 
 `;

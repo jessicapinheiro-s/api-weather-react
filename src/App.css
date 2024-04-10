@@ -8,11 +8,19 @@
     background-Attachment: fixed;
     background-Repeat: no-repeat;
     background-Size: cover;
+    background-image: linear-gradient(120deg, #275aff 0%, #96e6a1 100%);
+
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 40px;
     justify-content: center;;
+}
+
+@media (max-width: 600px){
+    .App{
+        flex-direction: column;
+    }
 }
 
