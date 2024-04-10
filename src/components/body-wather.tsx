@@ -55,8 +55,8 @@ interface Coord {
     lat: number;
 }
 function formatarData(data: Date){
-    const horas: string = data.getHours() <= 9 ? ` 0${data.getHours()}` : data.getHours().toString();
-    const minutos: string = data.getMinutes() <= 9 ? ` 0${data.getMinutes()}` : data.getMinutes().toString();
+    const horas: string = data.getHours() <= 9 ? `   0${data.getHours()}` : ` ${data.getHours()}`;
+    const minutos: string = data.getMinutes() <= 9 ? `0${data.getMinutes()}` : data.getMinutes().toString();
     return (data.toLocaleDateString()).concat(horas + ':' + minutos);
 }
 
